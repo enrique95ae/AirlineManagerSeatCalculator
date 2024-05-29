@@ -14,7 +14,7 @@ export class CalculatorComponent {
   jResult: number = 0;
   fResult: number = 0;
 
-  calculateSeats(spaces: number, yDemand: number, jDemand: number, fDemand: number): [number, number, number] {
+ calculateSeats(spaces: number, yDemand: number, jDemand: number, fDemand: number): [number, number, number] {
     // Calculate total space demand in Y space equivalents
     const totalDemand = yDemand * 1 + jDemand * 2 + fDemand * 3;
 
@@ -24,12 +24,12 @@ export class CalculatorComponent {
     const fProportion = (fDemand * 3) / totalDemand;
 
     // Allocate spaces based on proportions
-    const ySpaces = Math.round(yProportion * spaces);
-    const jSpaces = Math.round(jProportion * spaces);
-    const fSpaces = Math.round(fProportion * spaces);
+    let ySpaces = yProportion * spaces;
+    let jSpaces = jProportion * spaces;
+    let fSpaces = fProportion * spaces;
 
     // Convert spaces to seat numbers
-    let ySeats = ySpaces;
+    let ySeats = Math.floor(ySpaces);
     let jSeats = Math.floor(jSpaces / 2);
     let fSeats = Math.floor(fSpaces / 3);
 
@@ -39,21 +39,24 @@ export class CalculatorComponent {
     // Adjust remaining spaces
     let remainingSpaces = spaces - totalUsedSpaces;
 
+    // Adjust to ensure all spaces are used proportionally
     while (remainingSpaces > 0) {
-        if (remainingSpaces >= 3) {
+        if (remainingSpaces >= 3 && fSeats < fDemand) {
             fSeats += 1;
             remainingSpaces -= 3;
-        } else if (remainingSpaces >= 2) {
+        } else if (remainingSpaces >= 2 && jSeats < jDemand) {
             jSeats += 1;
             remainingSpaces -= 2;
-        } else {
+        } else if (remainingSpaces >= 1 && ySeats < yDemand) {
             ySeats += 1;
             remainingSpaces -= 1;
+        } else {
+            break;
         }
     }
 
     return [ySeats, jSeats, fSeats];
-  }
+}
 
   onCalculate() {
     [this.yResult, this.jResult, this.fResult] = this.calculateSeats(this.totalSpaces, this.yDemand, this.jDemand, this.fDemand);
