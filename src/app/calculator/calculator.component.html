@@ -1,0 +1,50 @@
+<div class="calculator-container">
+  <div class="fields-container">
+    <label>
+      Total plane spaces:
+      <input
+        type="number"
+        class="input-field"
+        [(ngModel)]="totalSpaces"
+        min="0"
+        step="1"
+      />
+    </label>
+    <label>
+      Y class demand:
+      <input
+        type="number"
+        class="input-field"
+        [(ngModel)]="yDemand"
+        min="0"
+        step="1"
+      />
+    </label>
+    <label>
+      J class demand:
+      <input
+        type="number"
+        class="input-field"
+        [(ngModel)]="jDemand"
+        min="0"
+        step="1"
+      />
+    </label>
+    <label>
+      F class demand:
+      <input
+        type="number"
+        class="input-field"
+        [(ngModel)]="fDemand"
+        min="0"
+        step="1"
+      />
+    </label>
+  </div>
+  <div class="results-container">
+    <div class="label">Y= {{ yResult }}</div>
+    <div class="label">J= {{ jResult }}</div>
+    <div class="label">F= {{ fResult }}</div>
+  </div>
+  <button class="calculate-button" (click)="onCalculate()">Calculate</button>
+</div>

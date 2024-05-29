@@ -1,0 +1,45 @@
+<div class="device">
+  <div class="screen-container">
+    <div class="side-buttons left-side">
+      <button
+        class="vertical-button"
+        *ngFor="let button of verticalButtons; index as i"
+        type="button"
+        title="Vertical button {{ i + 1 }}"
+      ></button>
+    </div>
+    <div class="screen">
+      <app-calculator></app-calculator>
+    </div>
+    <div class="side-buttons right-side">
+      <button
+        class="vertical-button"
+        *ngFor="let button of verticalButtons; index as i"
+        type="button"
+        title="Vertical button {{ i + 1 }}"
+      ></button>
+    </div>
+  </div>
+  <div class="button-grid-container">
+    <div class="button-grid">
+      <button
+        class="square-button"
+        *ngFor="let button of gridButtons; index as i"
+        type="button"
+        title="Grid button {{ i + 1 }}"
+      >
+        G{{ i + 1 }}
+      </button>
+    </div>
+    <div class="rounded-buttons">
+      <button
+        class="rounded-button"
+        *ngFor="let button of roundedButtons; index as i"
+        type="button"
+        title="Rounded button {{ i + 1 }}"
+      >
+        R{{ i + 1 }}
+      </button>
+    </div>
+  </div>
+</div>
