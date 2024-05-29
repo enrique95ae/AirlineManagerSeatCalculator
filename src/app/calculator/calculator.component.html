@@ -1,50 +1,97 @@
 <div class="calculator-container">
   <div class="fields-container">
-    <label>
-      Total plane spaces:
+    <label for="spaces">Total Spaces:</label>
+    <input
+      type="number"
+      id="spaces"
+      [(ngModel)]="spaces"
+      class="input-field"
+      min="0"
+      step="1"
+      title="Total Spaces"
+      placeholder="Enter total spaces"
+    />
+
+    <label for="yDemand">Y Class Demand:</label>
+    <input
+      type="number"
+      id="yDemand"
+      [(ngModel)]="yDemand"
+      class="input-field"
+      min="0"
+      step="1"
+      title="Y Class Demand"
+      placeholder="Enter Y class demand"
+    />
+
+    <label for="jDemand">J Class Demand:</label>
+    <input
+      type="number"
+      id="jDemand"
+      [(ngModel)]="jDemand"
+      class="input-field"
+      min="0"
+      step="1"
+      title="J Class Demand"
+      placeholder="Enter J class demand"
+    />
+
+    <label for="fDemand">F Class Demand:</label>
+    <input
+      type="number"
+      id="fDemand"
+      [(ngModel)]="fDemand"
+      class="input-field"
+      min="0"
+      step="1"
+      title="F Class Demand"
+      placeholder="Enter F class demand"
+    />
+
+    <label for="flightDuration">Flight Duration:</label>
+    <div class="time-container">
       <input
         type="number"
-        class="input-field"
-        [(ngModel)]="totalSpaces"
+        id="flightDurationHours"
+        [(ngModel)]="flightDurationHours"
+        class="input-field time-input"
         min="0"
         step="1"
+        title="Flight Duration Hours"
+        placeholder="HH"
       />
-    </label>
-    <label>
-      Y class demand:
+      <span>:</span>
       <input
         type="number"
-        class="input-field"
-        [(ngModel)]="yDemand"
+        id="flightDurationMinutes"
+        [(ngModel)]="flightDurationMinutes"
+        class="input-field time-input"
         min="0"
         step="1"
+        title="Flight Duration Minutes"
+        placeholder="MM"
       />
-    </label>
-    <label>
-      J class demand:
-      <input
-        type="number"
-        class="input-field"
-        [(ngModel)]="jDemand"
-        min="0"
-        step="1"
-      />
-    </label>
-    <label>
-      F class demand:
-      <input
-        type="number"
-        class="input-field"
-        [(ngModel)]="fDemand"
-        min="0"
-        step="1"
-      />
-    </label>
+    </div>
   </div>
+
+  <button (click)="calculate()" class="calculate-button" title="Calculate">
+    Calculate
+  </button>
+
   <div class="results-container">
-    <div class="label">Y= {{ yResult }}</div>
-    <div class="label">J= {{ jResult }}</div>
-    <div class="label">F= {{ fResult }}</div>
+    <div class="result-box">
+      <h3>Ideal Distribution</h3>
+      <p>Y Seats: {{ totalYSeatsProportional }}</p>
+      <p>J Seats: {{ totalJSeatsProportional }}</p>
+      <p>F Seats: {{ totalFSeatsProportional }}</p>
+    </div>
+
+    <div class="result-box">
+      <h3>Class Priority</h3>
+      <p>Y Seats: {{ ySeatsPerFlight }}</p>
+      <p>J Seats: {{ jSeatsPerFlight }}</p>
+      <p>F Seats: {{ fSeatsPerFlight }}</p>
+      <p class="flights-per-day"># Flights per day: {{ flightsPerDay }}</p>
+    </div>
   </div>
-  <button class="calculate-button" (click)="onCalculate()">Calculate</button>
 </div>
